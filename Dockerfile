@@ -1,19 +1,14 @@
-# Usa una imagen base de Python
-FROM python:3.8-slim
+# Usa una imagen de Python como base
+FROM python:3.9-slim
 
-# Establece el directorio de trabajo en /app
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el script Python y el archivo ratings.dat al contenedor
-COPY app.py .
-COPY ratings.dat .
+# Copia el script Python y el archivo de requisitos al contenedor
+COPY consume_api.py .
 
-# Instala las dependencias necesarias
-RUN pip install flask pandas
+# Instala las bibliotecas necesarias
+RUN pip install requests
 
-# Expone el puerto 8080
-EXPOSE 8080
-
-# Define el comando para ejecutar la aplicación
-CMD ["python", "app.py"]
-
+# Comando para ejecutar el script
+CMD ["python", "./consume_api.py"]
